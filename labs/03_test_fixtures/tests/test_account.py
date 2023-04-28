@@ -21,7 +21,7 @@ class TestAccountModel(TestCase):
     @classmethod
     def tearDownClass(cls):
         """Disconnect from database"""
-        db.close()
+        db.session.close()
 
     def setUp(self):
         """Truncate the tables"""
