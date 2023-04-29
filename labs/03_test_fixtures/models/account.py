@@ -3,10 +3,11 @@ Account class
 """
 import logging
 from sqlalchemy.sql import func
-from models import db
+from models import db, app 
+
+app.app_context().push()
 
 logger = logging.getLogger()
-
 
 class DataValidationError(Exception):
     """Used for an data validation errors when deserializing"""
@@ -20,7 +21,7 @@ class Account(db.Model):
     email = db.Column(db.String(64))
     phone_number = db.Column(db.String(32), nullable=True)
     disabled = db.Column(db.Boolean(), nullable=False, default=False)
-    date_joined = db.Column(db.Date, nullable=False, server_default=func.now())
+    date_joined = db.Column(db.DateTime, nullable=False, server_default=func.current_timestamp())
 
     def __repr__(self):
         return '<Account %r>' % self.name
