@@ -104,9 +104,3 @@ class TestAccountModel(TestCase):
         self.assertEqual(len(Account.all()), 0)
 
         
-    
-
-
-
-        
-
